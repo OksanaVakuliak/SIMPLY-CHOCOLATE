@@ -21,8 +21,18 @@ body {
   background-color: var(--light);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body.no-scroll {
   overflow: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 img {
@@ -42,11 +52,12 @@ p {
   padding: 0;
 }
 button {
-  box-sizing: border-box;
+  display: block;
   font-family: inherit;
   color: currentColor;
   cursor: pointer;
 }
+
 ul {
   list-style: none;
   margin: 0;
@@ -88,7 +99,6 @@ section {
   max-width: 375px;
   margin: 0 auto;
   padding: 0 20px;
-  box-sizing: border-box;
 
   @media only screen and (min-width: 768px) {
     max-width: 768px;
@@ -285,7 +295,8 @@ section {
 /*------------ HERO SECTION --------------*/
 .hero-section {
   height: 620px;
-  width: 335px;
+  width: 100%;
+  max-width: 335px;
   margin-bottom: 80px;
   background-image: linear-gradient(
       rgba(17, 17, 17, 0.4),
@@ -293,7 +304,8 @@ section {
     ),
     url("../img/background/mobile/hero-bg-mob.jpg");
 
-  @media only screen and (min-resolution: 192dpi) {
+  @media only screen and (min-device-pixel-ratio: 2),
+    only screen and (min-resolution: 192dpi) {
     background-image: linear-gradient(
         rgba(17, 17, 17, 0.4),
         rgba(17, 17, 17, 0.4)
@@ -312,7 +324,7 @@ section {
   padding-bottom: 20px;
 
   @media only screen and (min-width: 768px) {
-    width: 704px;
+    max-width: 704px;
     height: 890px;
     padding-bottom: 40px;
     background-image: linear-gradient(
@@ -321,7 +333,8 @@ section {
       ),
       url("../img/background/tablet/hero-bg_tab@1x.jpg");
 
-    @media only screen and (min-resolution: 192dpi) {
+    @media only screen and (min-device-pixel-ratio: 2),
+      only screen and (min-resolution: 192dpi) {
       background-image: linear-gradient(
           rgba(17, 17, 17, 0.4),
           rgba(17, 17, 17, 0.4)
@@ -331,7 +344,7 @@ section {
   }
 
   @media only screen and (min-width: 1200px) {
-    width: 1136px;
+    max-width: 1136px;
     height: 600px;
 
     background-image: linear-gradient(
@@ -340,7 +353,8 @@ section {
       ),
       url("../img/background/desktop/hero-bg-desktop.jpg");
 
-    @media only screen and (min-resolution: 192dpi) {
+    @media only screen and (min-device-pixel-ratio: 2),
+      only screen and (min-resolution: 192dpi) {
       background-image: linear-gradient(
           rgba(17, 17, 17, 0.4),
           rgba(17, 17, 17, 0.4)
@@ -559,16 +573,17 @@ section {
 
   padding: 28px;
   border-radius: 15px;
-  width: 335px;
+  width: 100%;
+  max-width: 335px;
   height: 270px;
 
   @media only screen and (min-width: 768px) {
-    width: 336px;
+    max-width: 336px;
     height: 270px;
   }
 
   @media only screen and (min-width: 1200px) {
-    width: 260px;
+    max-width: 260px;
     height: 270px;
   }
 }
@@ -582,7 +597,7 @@ section {
   border: 1px solid var(--orange);
 }
 
-.ingrediens-img {
+.ingredients-img {
   margin-bottom: 16px;
 }
 
@@ -712,22 +727,25 @@ section {
 
 /* ------------------SELLERS SECTION------------------ */
 
-.seller-cards-container {
+.sellers-cards-list {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 16px;
 }
-.seller-card-wrapper {
+.sellers-card-item {
+  display: flex;
+  flex-direction: column;
   background-color: var(--white);
 }
 
-.seller-subtitle {
+.sellers-subtitle {
   border-bottom: 1px solid rgba(17, 17, 17, 0.1);
   border-left: 1px solid rgba(17, 17, 17, 0.1);
   border-right: 1px solid rgba(17, 17, 17, 0.1);
   border-radius: 0 0 15px 15px;
-  width: 335px;
+  width: 100%;
+  max-width: 335px;
   padding: 24px 0;
   margin: 0 auto;
 
@@ -738,11 +756,11 @@ section {
   text-align: center;
 
   @media only screen and (min-width: 768px) {
-    width: 344px;
+    max-width: 344px;
   }
 
   @media only screen and (min-width: 1200px) {
-    width: 368px;
+    max-width: 368px;
   }
 }
 
@@ -753,17 +771,18 @@ section {
   position: relative;
   z-index: 11;
 
-  &:hover .seller-text {
+  &:hover .sellers-text {
     opacity: 1;
   }
 
-  &:hover .seller-img {
+  &:hover .sellers-img {
     filter: blur(1px);
   }
 }
-.seller-img {
+.sellers-img {
   border-radius: 15px 15px 0 0;
-  width: 335px;
+  width: 100%;
+  max-width: 335px;
   height: 464px;
 
   @media only screen and (min-width: 768px) {
@@ -776,7 +795,7 @@ section {
 
   transition: filter 250ms linear;
 }
-.seller-text {
+.sellers-text {
   line-height: 1.3;
   color: #fafafa;
 
@@ -789,17 +808,344 @@ section {
   transition: opacity 250ms linear;
 }
 
-.seller-card-container.right-card,
-.seller-card-container.left-card {
-  display: none;
+/* ---------------------FEEDBACK SECTION------------------- */
+
+.feedback-section {
+  margin-bottom: 80px;
+
+  @media only screen and (min-width: 768px) {
+    margin-bottom: 100px;
+  }
 
   @media only screen and (min-width: 1200px) {
+    margin-bottom: 120px;
+  }
+}
+
+.feedback-section-title {
+  margin-bottom: 74px;
+
+  @media only screen and (min-width: 768px) {
+    margin-bottom: 91px;
+  }
+}
+.feedback-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+
+  margin-bottom: 32px;
+}
+.feedback-item {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: center;
+  align-items: center;
+  padding: 56px 24px 24px;
+
+  position: relative;
+  border: 1px solid rgba(17, 17, 17, 0.1);
+  border-radius: 15px;
+  width: 360px;
+  height: 200px;
+
+  box-shadow: 0 9px 100px 0 rgba(17, 17, 17, 0.03);
+  background-color: var(--white);
+}
+.reviewer-img {
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.reviewer-name {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.3;
+  text-align: center;
+}
+.feedback-text {
+  line-height: 1.3;
+  text-align: center;
+  color: rgba(17, 17, 17, 0.7);
+}
+.feedback-btn {
+  margin: 0 auto;
+
+  border: 1px solid var(--orange);
+  background-color: transparent;
+  border-radius: 100px;
+  padding: 12px 28px;
+
+  font-weight: 600;
+
+  transition: all 250ms linear;
+
+  @media only screen and (min-width: 768px) {
+    padding: 14px 40px;
+
+    font-size: 18px;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: var(--orange);
+    color: var(--white);
+  }
+}
+
+.left-card,
+.right-card {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .right-card {
     display: flex;
   }
 }
 
-@media only screen and (min-width: 768px) {
-  .seller-card-container.right-card {
+@media only screen and (min-width: 1200px) {
+  .left-card {
     display: flex;
+  }
+}
+
+/* ---------------FOOTER------------------ */
+
+.footer {
+  padding: 32px 20px;
+  background-color: var(--violet);
+
+  @media only screen and (min-width: 768px) {
+    padding: 50px 32px;
+  }
+}
+
+.footer-top {
+  @media only screen and (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.footer-title {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.17;
+  color: var(--white);
+  max-width: 300px;
+
+  margin-bottom: 32px;
+}
+
+.footer-info {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 32px;
+
+  @media only screen and (min-width: 768px) {
+    flex-direction: row;
+    gap: 40px;
+  }
+
+  @media only screen and (min-width: 1200px) {
+    gap: 50px;
+  }
+}
+
+.info-label {
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--white);
+
+  margin-bottom: 14px;
+}
+.social-list {
+  display: flex;
+  gap: 14px;
+}
+.footer-social-links {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 8px;
+
+  transition: border-color 250ms linear;
+
+  &:hover,
+  &:focus {
+    border-color: rgba(253, 146, 34, 0.1);
+  }
+}
+.social-links-icon-footer {
+  fill: var(--white);
+
+  transition: fill 250ms linear;
+}
+.footer-social-links:hover .social-links-icon-footer,
+.footer-social-links:focus .social-links-icon-footer {
+  fill: var(--orange);
+}
+
+.contacts-address {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.contact-link {
+  line-height: 1.3;
+  color: var(--white);
+
+  transition: color 250ms linear;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: var(--orange);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 250ms linear;
+  }
+
+  &:hover::after,
+  &:focus::after {
+    transform: scaleX(1);
+  }
+
+  &:hover,
+  &:focus {
+    color: var(--orange);
+  }
+}
+
+.footer-divider {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 32px 0;
+
+  @media only screen and (min-width: 768px) {
+    margin: 50px 0 24px;
+  }
+}
+
+.footer-bottom {
+  display: flex;
+  gap: 32px;
+  flex-direction: column;
+
+  @media only screen and (min-width: 768px) {
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  @media only screen and (min-width: 768px) {
+    flex-direction: row;
+    gap: 16px;
+  }
+
+  @media only screen and (min-width: 1200px) {
+    gap: 24px;
+  }
+}
+.nav-list-item {
+  text-wrap: nowrap;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.14;
+  color: var(--white);
+
+  transition: color 250ms linear;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: var(--orange);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 250ms linear;
+  }
+
+  &:hover::after,
+  &:focus::after {
+    transform: scaleX(1);
+  }
+
+  &:hover,
+  &:focus {
+    color: var(--orange);
+  }
+}
+
+.footer-subscribe {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.subscribe-input {
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  background-color: transparent;
+  color: var(--white);
+  border-radius: 30px;
+  padding: 14px 18px;
+  width: 100%;
+  flex-grow: 1;
+  transition: border-color 250ms linear;
+
+  @media only screen and (min-width: 768px) {
+    padding: 14px 24px;
+  }
+
+  @media only screen and (min-width: 1200px) {
+    padding: 14px 24px;
+    font-size: 18px;
+    line-height: 1.22222;
+  }
+
+  &:hover,
+  &:focus {
+    border-color: var(--white);
+  }
+}
+.subscribe-btn {
+  border-radius: 100px;
+  padding: 14px 26px;
+
+  background-color: var(--orange);
+  border: none;
+
+  font-weight: 600;
+
+  text-align: center;
+  color: var(--white);
+
+  transition: background-color 250ms linear, color 250ms linear;
+
+  @media only screen and (min-width: 768px) {
+    padding: 14px 28px;
+  }
+
+  @media only screen and (min-width: 1200px) {
+    padding: 17px 40px;
+    line-height: 1.3;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: var(--beige);
+    color: var(--orange);
   }
 }
